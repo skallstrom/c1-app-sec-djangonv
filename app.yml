@@ -24,6 +24,11 @@ metadata:
   name: c1-app-sec-djangonv
 spec:
   replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
   template:
     metadata:
       labels:
@@ -33,7 +38,12 @@ spec:
       - name: c1-app-sec-djangonv
         image: $K8S_REGISTRY/c1-app-sec-djangonv:latest
         imagePullPolicy: Always
+        env:
+        - name: TREND_AP_KEY
+          value: $APPSEC_KEY
+        - name: TREND_AP_SECRET
+          value: $APPSEC_SECRET
         ports:
         - containerPort: 8000
       imagePullSecrets:
-      - name: cluster-registry
+      - name: $KUBERNETES_SECRET_NAME
