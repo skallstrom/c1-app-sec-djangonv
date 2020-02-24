@@ -1,4 +1,4 @@
-# app-protect-djangonv-mac
+# c1-app-sec-djangonv
 
 Sample Django application for Cloud One Application Security demos, build and deployable to kubernetes with Jenkins.
 
