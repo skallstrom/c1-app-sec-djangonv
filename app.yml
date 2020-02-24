@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
+  name: c1-app-sec-djangonv
+  labels:
+    app: c1-app-sec-djangonv
+spec:
+  type: NodePort
+  ports:
+  - port: 8000
+    name: c1-app-sec-djangonv
+    targetPort: 8000
+    nodePort: 30100
+  selector:
+    app: c1-app-sec-djangonv
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: c1-app-sec-djangonv
+  name: c1-app-sec-djangonv
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: c1-app-sec-djangonv
+    spec:
+      containers:
+      - name: c1-app-sec-djangonv
+        image: $K8S_REGISTRY/c1-app-sec-djangonv:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8000
+      imagePullSecrets:
+      - name: cluster-registry
