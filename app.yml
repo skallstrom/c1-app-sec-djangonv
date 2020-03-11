@@ -16,7 +16,7 @@ spec:
   selector:
     app: c1-app-sec-djangonv
 ---
-apiVersion: extensions/v1beta1
+apiVersion: app/v1
 kind: Deployment
 metadata:
   labels:
@@ -24,6 +24,9 @@ metadata:
   name: c1-app-sec-djangonv
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: c1-app-sec-djangonv
   strategy:
     type: RollingUpdate
     rollingUpdate:
