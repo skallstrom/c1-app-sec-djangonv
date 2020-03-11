@@ -16,7 +16,7 @@ spec:
   selector:
     app: c1-app-sec-djangonv
 ---
-apiVersion: app/v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
