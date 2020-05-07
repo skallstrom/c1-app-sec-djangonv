@@ -37,7 +37,7 @@ node('jenkins-jenkins-slave') {
               high: 300,
               medium: 1000,
               low: 500,
-              unknown: 10,
+              unknown: 15,
             ],
             contents: [
               defcon1: 0,
