@@ -3,7 +3,7 @@
 # Start with the latest python 2.x version
 # FROM python:2.7.13
 # FROM python:2.7.18-stretch
-# FROM python:2
+FROM python:2
 
 # Build App
 RUN mkdir -p /usr/src/app
